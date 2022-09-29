@@ -8,4 +8,7 @@
 4. Grafana로 시각화
 
 # 기타
-프로젝트 참고: https://youtu.be/C_4C-1v9Src
+프로젝트 참고
+- https://youtu.be/C_4C-1v9Src
+- https://blog.voidmainvoid.net/478
+- https://github.com/raweceek-temeletry/forza-horizon-5-UDP
