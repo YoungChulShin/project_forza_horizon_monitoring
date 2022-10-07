@@ -88,7 +88,8 @@ object ForzaDataFactory {
                 positionY = getFromBuffer(buffer, Float::class.java),
                 positionZ = getFromBuffer(buffer, Float::class.java),
 
-                speed = getFromBuffer(buffer, Float::class.java),
+                // https://en.wikipedia.org/wiki/Kilometres_per_hour
+                speedMPS = getFromBuffer(buffer, Float::class.java),
                 power = getFromBuffer(buffer, Float::class.java),
                 torque = getFromBuffer(buffer, Float::class.java),
 

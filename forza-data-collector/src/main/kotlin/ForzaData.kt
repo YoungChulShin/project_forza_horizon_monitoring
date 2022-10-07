@@ -1,3 +1,4 @@
+import kotlin.math.roundToInt
 
 /**
  * Data Size: 337 byte
@@ -68,9 +69,13 @@ data class ForzaData(
     val suspensionTravelMetersRearLeft: Float,
     val suspensionTravelMetersRearRight: Float,
 
+    // Unique ID of the car make/model
     val carOrdinal: Int,
+    // Between 0 (D -- worst cars) and 7 (X class -- best cars) inclusive
     val carClass: Int,
+    // Between 100 (slowest car) and 999 (fastest car) inclusive
     val carPerformanceIndex: Int,
+    // 0 = FWD, 1 = RWD, 2 = AWD
     val drivetrainType: Int,
     val numCylinders: Int,
     val horizonPlaceholder1: Int,
@@ -81,7 +86,7 @@ data class ForzaData(
     val positionY: Float,
     val positionZ: Float,
 
-    val speed: Float,
+    val speedMPS: Float,
     val power: Float,
     val torque: Float,
 
@@ -108,4 +113,20 @@ data class ForzaData(
     val steer: Byte,
     val normalizedDrivingLine: Byte,
     val normalizedAIBrakeDifference: Byte,
-)
+) {
+    // https://en.wikipedia.org/wiki/Kilometres_per_hour
+    val speedKPH: Int = (speedMPS * 3.6f).roundToInt()
+    val speedMPH: Int = (speedMPS * 2.236936f).roundToInt()
+    val powerHP: Float = (power * 0.00134102f)
+
+    val carType: String = when(drivetrainType) {
+        0 -> "FWD"
+        1 -> "RWD"
+        2 -> "AWD"
+        else -> "UNKOWN"
+    }
+
+    fun printCoreData() {
+        println("raceOn: ${raceOn}, carType: ${carType}, engineRPM: ${currentEngineRpm}, idleRPM: ${engineIdleRpm}, speed: ${speedKPH}, power: ${powerHP}, accel: ${accel}, brake: ${brake}, handbrake: ${handBrake}, lapNubmer: ${lapNumber}, position: ${racePosition}, bestlap: ${bestLap} ")
+    }
+}

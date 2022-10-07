@@ -10,9 +10,8 @@ fun main() {
     while (true) {
         val data = ByteArray(337)
         val packet = DatagramPacket(data, 0, data.size)
-
         dataSocket.receive(packet)
 
-        println(gson.toJson(packet.data))
+        ForzaDataFactory.create(packet.data)?.printCoreData()
     }
 }
