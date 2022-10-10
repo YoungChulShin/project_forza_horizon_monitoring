@@ -1,17 +1,28 @@
-import com.google.gson.Gson
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 
 class ForzaDataCollectApplication
 
 fun main() {
-    val dataSocket = DatagramSocket(6666)
-    val gson = Gson()
+    val dataSocket = DatagramSocket(Configuration.UDPReceiver.PORT)
+    val kafkaSender = KafkaSender()
+
+    printStartLog()
     while (true) {
-        val data = ByteArray(337)
+        val data = ByteArray(Configuration.UDPReceiver.DATA_SIZE)
         val packet = DatagramPacket(data, 0, data.size)
         dataSocket.receive(packet)
 
-        ForzaDataFactory.create(packet.data)?.printCoreData()
+        ForzaDataFactory.create(packet.data)?.let {
+            kafkaSender.send(it)
+        }
     }
+}
+
+fun printStartLog() {
+    println("""
+        ===============================
+        Forza 데이터 전송을 시작합니다
+        ===============================
+    """.trimIndent())
 }

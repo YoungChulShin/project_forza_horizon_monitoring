@@ -10,7 +10,7 @@ object ForzaDataFactory {
 
         try {
             return ForzaData(
-                raceOn = getFromBuffer(buffer, Int::class.java),
+                raceOn = getFromBuffer(buffer, Int::class.java) != 0,
                 timeStampMs = getFromBuffer(buffer, UInt::class.java).toLong(),
 
                 engineMaxRpm = getFromBuffer(buffer, Float::class.java),

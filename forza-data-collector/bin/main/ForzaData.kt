@@ -1,10 +1,7 @@
 import kotlin.math.roundToInt
 
-/**
- * Data Size: 337 byte
- */
 data class ForzaData(
-    val raceOn: Int,
+    val raceOn: Boolean,
     val timeStampMs: Long,
 
     val engineMaxRpm: Float,
@@ -125,6 +122,12 @@ data class ForzaData(
         2 -> "AWD"
         else -> "UNKOWN"
     }
+
+    fun onRacing() = this.raceOn
+
+    fun onTrack() = racePosition > 0
+
+    fun onTrackRacing() = onRacing() && onTrack()
 
     fun printCoreData() {
         println("raceOn: ${raceOn}, carType: ${carType}, engineRPM: ${currentEngineRpm}, idleRPM: ${engineIdleRpm}, speed: ${speedKPH}, power: ${powerHP}, accel: ${accel}, brake: ${brake}, handbrake: ${handBrake}, lapNubmer: ${lapNumber}, position: ${racePosition}, bestlap: ${bestLap} ")

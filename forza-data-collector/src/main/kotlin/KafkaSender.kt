@@ -18,8 +18,6 @@ class KafkaSender {
     }
 
     fun send(data: ForzaData) {
-        if (!data.onTrackRacing()) return
-
         val message = gson.toJson(data)
         val record = ProducerRecord<String, String>(Configuration.KafkaSender.TOPIC_NAME, message)
 

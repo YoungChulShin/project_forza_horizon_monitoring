@@ -1,7 +1,5 @@
 import com.google.gson.Gson
-import org.apache.kafka.clients.producer.KafkaProducer
-import org.apache.kafka.clients.producer.ProducerConfig
-import org.apache.kafka.clients.producer.ProducerRecord
+import org.apache.kafka.clients.producer.*
 import org.apache.kafka.common.serialization.StringSerializer
 import java.util.*
 
@@ -23,8 +21,12 @@ class KafkaSender {
         val message = gson.toJson(data)
         val record = ProducerRecord<String, String>(Configuration.KafkaSender.TOPIC_NAME, message)
 
-        kafkaProducer.send(record, object Callback() {
-
-        })
+        kafkaProducer.send(record) { metadata, exception ->
+            run {
+                if (exception != null) {
+                    println("Error: ${exception.message}")
+                }
+            }
+        }
     }
 }
