@@ -12,6 +12,7 @@ repositories {
 }
 
 dependencies {
+    implementation("org.apache.kafka:kafka-streams:3.3.1")
     implementation("com.google.code.gson:gson:2.9.1")
 
     testImplementation(kotlin("test"))
