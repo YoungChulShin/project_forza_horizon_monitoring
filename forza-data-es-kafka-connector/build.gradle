@@ -11,4 +11,9 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+    implementation "org.apache.kafka:connect-api:2.5.0"
+    implementation "com.google.code.gson:gson:2.8.6"
+    implementation "org.slf4j:slf4j-simple:1.7.36"
+    implementation "org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.6"
 }
