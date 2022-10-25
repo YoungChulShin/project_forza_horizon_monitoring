@@ -8,6 +8,8 @@
 4. Kafka Connect를 이용해서 ElasticSearch로 저장
 5. Grafana로 시각화
 
+![pipeline](/image/pipeline.png)
+
 # 동작 순서
 1. docker-compose 실행
    ```
